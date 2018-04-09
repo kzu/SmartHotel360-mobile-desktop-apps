@@ -16,9 +16,11 @@ using SmartHotel.Clients.Droid.Services.Authentication;
 using SmartHotel.Clients.Droid.Services.CardEmulation;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Xamarin.Live;
 
 namespace SmartHotel.Clients.Droid
 {
+
     [Activity(
         Label = "SmartHotel", 
         Icon = "@drawable/icon", 
@@ -34,7 +36,15 @@ namespace SmartHotel.Clients.Droid
 
             base.OnCreate(bundle);
 
-            Forms.Init(this, bundle);
+            //Forms.Init(this, bundle);
+
+            //LiveReload.Init();
+
+            LoadApplication(AppInit
+                .Init<App>(this, bundle)
+                .UseLiveReload()
+                .Run());
+
             CarouselViewRenderer.Init();
             UserDialogs.Init(this);
             Renderers.Calendar.Init();
@@ -42,10 +52,10 @@ namespace SmartHotel.Clients.Droid
 
             InitMessageCenterSubscriptions();
             RegisterPlatformDependencies();
-            LoadApplication(new App());
+            LoadApplication(
+                new App());
 
-            App.AuthenticationClient.PlatformParameters =
-                  new PlatformParameters(Forms.Context as Activity);
+            App.AuthenticationClient.PlatformParameters = new PlatformParameters(this);
 
             MakeStatusBarTranslucent(false);
             InitNFCService();
