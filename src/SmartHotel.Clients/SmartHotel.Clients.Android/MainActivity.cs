@@ -16,7 +16,6 @@ using SmartHotel.Clients.Droid.Services.Authentication;
 using SmartHotel.Clients.Droid.Services.CardEmulation;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Xamarin.Live;
 
 namespace SmartHotel.Clients.Droid
 {
@@ -36,14 +35,7 @@ namespace SmartHotel.Clients.Droid
 
             base.OnCreate(bundle);
 
-            //Forms.Init(this, bundle);
-
-            //LiveReload.Init();
-
-            LoadApplication(AppInit
-                .Init<App>(this, bundle)
-                .UseLiveReload()
-                .Run());
+            Forms.Init(this, bundle);
 
             CarouselViewRenderer.Init();
             UserDialogs.Init(this);
