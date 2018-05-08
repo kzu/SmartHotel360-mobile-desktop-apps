@@ -44,8 +44,7 @@ namespace SmartHotel.Clients.Droid
 
             InitMessageCenterSubscriptions();
             RegisterPlatformDependencies();
-            LoadApplication(
-                new App());
+            LoadApplication(new App());
 
             App.AuthenticationClient.PlatformParameters = new PlatformParameters(this);
 
